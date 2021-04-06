@@ -1,4 +1,5 @@
 <div class="container">
-<h2><%= @user.username.capitalize %>'s Profile</h2>
-<p><%= @user.email %></p>
+    <h2><%= @user.username.capitalize %>'s Profile</h2>
+    <p><%= @user.email %></p>
+    <%= link_to 'back', root_path, class: 'btn btn-secondary'%>
 </div>

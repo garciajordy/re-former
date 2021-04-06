@@ -1,7 +1,10 @@
 <div class="container">
-<h2>USERS</h2>
+    <h2>USERS</h2>
 
-<% @users.each do |user| %>
+    <% @users.each do |user| %>
     <%= link_to user.username, user %>
-<% end %>
+    <% end %>
+    <div>
+        <%= link_to "Create User", new_user_path, class: 'btn btn-success mt-3' %>
+    </div>
 </div>
