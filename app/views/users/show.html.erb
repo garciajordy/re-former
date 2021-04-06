@@ -1,5 +1,7 @@
 <div class="container">
     <h2><%= @user.username.capitalize %>'s Profile</h2>
     <p><%= @user.email %></p>
+    <%= link_to 'Edit', edit_user_path(@user), class: 'btn btn-primary'%>
+    <%= link_to 'Remove', user_path(@user), method: 'delete', data:{confirm: 'Are You Sure?'}, class: 'btn btn-danger'%>
     <%= link_to 'back', root_path, class: 'btn btn-secondary'%>
 </div>
