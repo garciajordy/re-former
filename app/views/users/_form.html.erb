@@ -1,0 +1,74 @@
+<!-- <form action="/users" accept-charset="UTF-8" method="post"><input type="hidden" name="authenticity_token" value="gSMFakX1eL8DBQOtsRM0aJ-4vzil59zMPc7_2aSQgFLTAELhV_T3C7kbHlhSm8Fjk7yqZD_--_YQfisxLOyFew">
+    <div class="form-group">
+        <label for="user_username">Write Username:</label>
+        <input placeholder="eg. John Doe" minlength="3" maxlength="12" class="form-control" type="text" name="user[username]" required id="user_username">
+    </div>
+    <div class="form-group">
+        <label for="user_email">Write email:</label>
+        <input placeholder="eg. John@doe.com" minlength="3" maxlength="36" class="form-control" type="email" name="user[email]" required id="user_email">
+    </div>
+    <div class="form-group">
+        <label for="user_password">Write password:</label>
+        <input placeholder="eg. 123456" minlength="3" maxlength="12" class="form-control" type="password" name="user[password]" required id="user_password">
+    </div>
+    <div class="text-center">
+        <a class="btn btn-secondary" href="/">back</a>
+        <input type="submit" name="commit" value="Create User" class="btn btn-primary" data-disable-with="Create User">
+    </div>
+    </form> -->
+
+<%
+=begin%>
+ 
+<%= form_tag("/users", method: "post") do %>
+  <%= label_tag(:username, "Write Username:") %>
+  <%= text_field_tag(:username) %>
+   <%= label_tag(:email, "Write email:") %>
+  <%= email_field_tag(:email) %>
+   <%= label_tag(:password, "Write password:") %>
+  <%= password_field_tag(:password) %>
+  <%= submit_tag("Create User") %>
+<% end %> 
+<%
+=end%>
+
+
+<%= form_with model: @user do |form| %>
+<% @user.errors.full_messages_for(:username).each do |message| %>
+<div class="alert alert-danger alert-dismissible fade show">
+    <%= message %>
+</div>
+<% end %>
+<div class="form-group">
+    <%= form.label :username, 'Write Username:' %>
+    <%= form.text_field :username, placeholder: 'eg. John Doe',class: 'form-control' %>
+</div>
+<% @user.errors.full_messages_for(:email).each do |message| %>
+<div class="alert alert-danger alert-dismissible fade show">
+    <%= message %>
+</div>
+<% end %>
+<div class="form-group">
+    <%= form.label :email, 'Write email:' %>
+    <%= form.email_field :email, placeholder: 'eg. John@doe.com',class: 'form-control' %>
+</div>
+<% @user.errors.full_messages_for(:password).each do |message| %>
+<div class="alert alert-danger alert-dismissible fade show">
+    <%= message %>
+</div>
+<% end %>
+<% if @mode != "edit"%>
+<div class="form-group">
+    <%= form.label :password, 'Write password:' %>
+    <%= form.password_field :password, placeholder: 'eg. 123456',class: 'form-control' %>
+</div>
+<% end %>
+<div class="text-center">
+    <%= link_to 'back', root_path, class: 'btn btn-secondary'%>
+    <%= form.submit class: 'btn btn-primary'%>
+</div>
+<% end %> 
+
+
+
+
