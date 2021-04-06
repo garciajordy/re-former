@@ -1,16 +1,33 @@
 <%= form_with model: @user do |form| %>
+<% @user.errors.full_messages_for(:username).each do |message| %>
+<div class="alert alert-danger alert-dismissible fade show">
+    <%= message %>
+</div>
+<% end %>
 <div class="form-group">
     <%= form.label :username, 'Write Username:' %>
     <%= form.text_field :username, placeholder: 'eg. John Doe',class: 'form-control' %>
 </div>
+<% @user.errors.full_messages_for(:email).each do |message| %>
+<div class="alert alert-danger alert-dismissible fade show">
+    <%= message %>
+</div>
+<% end %>
 <div class="form-group">
     <%= form.label :email, 'Write email:' %>
     <%= form.email_field :email, placeholder: 'eg. John@doe.com',class: 'form-control' %>
 </div>
+<% @user.errors.full_messages_for(:password).each do |message| %>
+<div class="alert alert-danger alert-dismissible fade show">
+    <%= message %>
+</div>
+<% end %>
+<% if @mode != "edit"%>
 <div class="form-group">
     <%= form.label :password, 'Write password:' %>
     <%= form.password_field :password, placeholder: 'eg. 123456',class: 'form-control' %>
 </div>
+<% end %>
 <div class="text-center">
     <%= link_to 'back', root_path, class: 'btn btn-secondary'%>
     <%= form.submit class: 'btn btn-primary'%>
